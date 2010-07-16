@@ -308,7 +308,9 @@ def prepare_installation
   tmpdirs << bindir
 
   for i in [sitelibdir, bindir, sbindir, libdir, mandir]
-    if not Directory.exists?(i) mkdir(i)
+    if not FileTest.directory?(i) 
+      Dir.mkdir(i)
+    end
   end 
 
   InstallOptions.tmp_dirs = tmpdirs.compact
